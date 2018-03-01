@@ -1,0 +1,1 @@
+# movidius_powered_raspberry_pi_cam
