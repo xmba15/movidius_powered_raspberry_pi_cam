@@ -12,5 +12,3 @@ class Config():
 
     model_dir = model_path
     image_dir = image_path
-
-    
