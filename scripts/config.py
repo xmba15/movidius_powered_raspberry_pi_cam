@@ -12,3 +12,4 @@ class Config():
 
     model_dir = model_path
     image_dir = image_path
+    inception_v3_image_size = 299
