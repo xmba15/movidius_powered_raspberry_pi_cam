@@ -13,7 +13,7 @@ class Config():
     model_dir = model_path
     image_dir = image_path
     inception_v3_image_size = 299
-    inception_v1_image_size = 299
+    inception_v1_image_size = 224
 
     @classmethod
     def get_usb_cam(cls):
@@ -23,7 +23,7 @@ class Config():
                                 shell = True,
                                 stdout = subprocess.PIPE)
 
-        list_video = task.stdout.read()
+        list_video = task.stdout.read().decode("utf-8")
         list_video = list_video.strip().split('\n')
 
         return list_video
