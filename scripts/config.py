@@ -14,3 +14,16 @@ class Config():
     image_dir = image_path
     inception_v3_image_size = 299
     inception_v1_image_size = 299
+
+    @classmethod
+    def get_usb_cam(cls):
+
+        import subprocess
+        task = subprocess.Popen("ls /dev | grep video",
+                                shell = True,
+                                stdout = subprocess.PIPE)
+
+        list_video = task.stdout.read()
+        list_video = list_video.strip().split('\n')
+
+        return list_video

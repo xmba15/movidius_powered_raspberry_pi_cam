@@ -3,10 +3,16 @@
 
 import cv2
 import sys
+from config import Config
 
 def main(arg):
 
-    cam_index = 0
+    list_cam = Config.get_usb_cam()
+    if len(list_cam) == 0:
+        print "Found no attached usb cameras"
+        return
+
+    cam_index = int(list_cam[0][-1])
     argc = len(arg)
     if (argc > 1):
         cam_index = int(arg[1])
