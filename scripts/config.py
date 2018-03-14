@@ -14,6 +14,7 @@ class Config():
     image_dir = image_path
     inception_v3_image_size = 299
     inception_v1_image_size = 224
+    squeezenet_image_size = 227
 
     @classmethod
     def get_usb_cam(cls):
