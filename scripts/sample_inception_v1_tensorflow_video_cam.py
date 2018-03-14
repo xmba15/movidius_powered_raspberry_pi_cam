@@ -54,24 +54,28 @@ with open(os.path.join(Config.model_dir, categories_filename), 'r') as f:
     print ("Number of categories:", len(categories))
 
 # load images
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FPS, 1)
-ret, frame = cap.read()
+list_cam = Config.get_usb_cam()
 
-while (ret):
-
-    img = preprocessing_image(frame, Config.inception_v1_image_size)
-    graph.LoadTensor(img.astype(np.float16), 'user object')
-    output, userobj = graph.GetResult()
-    output_result = categories[output.argsort()[::-1][0]]
-    # graph.DeallocateGraph()
-    print (output_result)
+if len(list_cam) != 0:
+    cam_index = int(list_cam[0][-1])
+    cap = cv2.VideoCapture(cam_index)
+    cap.set(cv2.CAP_PROP_FPS, 1)
     ret, frame = cap.read()
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    print ("Start streaming")
 
-cap.release()
-cv2.destroyAllWindows()
+    while (ret):
+        img = preprocessing_image(frame, Config.inception_v1_image_size)
+        graph.LoadTensor(img.astype(np.float16), 'user object')
+        output, userobj = graph.GetResult()
+        output_result = categories[output.argsort()[::-1][0]]
+        # graph.DeallocateGraph()
+        print (output_result)
+        ret, frame = cap.read()
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
 
 graph.DeallocateGraph()
 device.CloseDevice()
