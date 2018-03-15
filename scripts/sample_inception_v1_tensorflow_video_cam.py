@@ -59,7 +59,7 @@ list_cam = Config.get_usb_cam()
 if len(list_cam) != 0:
     cam_index = int(list_cam[0][-1])
     cap = cv2.VideoCapture(cam_index)
-    cap.set(cv2.CAP_PROP_FPS, 1)
+    # cap.set(cv2.CAP_PROP_FPS, 1)
     ret, frame = cap.read()
     print ("Start streaming")
 
