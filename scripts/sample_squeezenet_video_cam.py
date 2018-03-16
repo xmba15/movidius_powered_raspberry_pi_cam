@@ -46,11 +46,10 @@ with open(os.path.join(Config.model_dir, categories_filename), 'r') as f:
     f.close()
     print ("Number of categories:", len(categories))
 
-
 # load images
 list_cam = Config.get_usb_cam()
 
-if list_cam[0] != "":
+if list_cam is not None and list_cam[0] != "":
     cam_index = int(list_cam[0][-1])
     cap = cv2.VideoCapture(cam_index)
     # cap.set(cv2.CAP_PROP_FPS, 1)

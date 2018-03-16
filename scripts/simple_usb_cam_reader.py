@@ -8,7 +8,7 @@ from config import Config
 def main(arg):
 
     list_cam = Config.get_usb_cam()
-    if len(list_cam) == 0:
+    if list_cam is None or len(list_cam) == 0:
         print "Found no attached usb cameras"
         return
 
