@@ -165,7 +165,9 @@ def run_inference(image_to_classify, ssd_mobilenet_graph):
             y2 = min((output[base_index + 6] * image_to_classify.shape[1]), image_to_classify.shape[1]-1)
 
             # overlay boxes and labels on to the image
-            overlay_on_image(image_to_classify, output[base_index:base_index + 7])
+            class_id = int(output[base_index:base_index + 7][1])
+            if class_id == 15:
+                overlay_on_image(image_to_classify, output[base_index:base_index + 7])
 
 def print_usage():
 
