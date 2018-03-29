@@ -8,12 +8,15 @@ data_path = os.path.join(directory_root, "data")
 model_path = os.path.join(directory_root, "models")
 image_path = os.path.join(directory_root, "images")
 video_path = os.path.join(directory_root, "videos")
+validated_image_path = os.path.join(directory_root, "images", "validated_images")
 
 class Config():
 
     model_dir = model_path
     image_dir = image_path
+    validated_image_dir = validated_image_path
     video_dir = video_path
+
     inception_v3_image_size = 299
     inception_v1_image_size = 224
     squeezenet_image_size = 227
